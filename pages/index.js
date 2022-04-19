@@ -87,8 +87,10 @@ export default function Home() {
           </div>
 
           {/* Box: to display the extracted text */}
-          <div className="w-full col-span-5 md:col-span-3 border-2 border-green-500 font-semibold text-gray-500 rounded-lg p-5">
-            {extractedText}
+          <div className="w-full max-h-72 overflow-hidden col-span-5 md:col-span-3 border-2 border-green-500 font-semibold text-gray-500 rounded-lg">
+            <div className="overflow-y-scroll break-words w-full h-full p-5">
+              {extractedText}
+            </div>
           </div>
         </form>
       </main>
