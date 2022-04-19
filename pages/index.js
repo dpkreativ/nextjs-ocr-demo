@@ -5,6 +5,7 @@ export default function Home() {
   // ========= STATE MGT =========
   const [imageSrc, setImageSrc] = useState();
   const [extractedText, setExtractedText] = useState('Extracted text here');
+  const [loading, setLoading] = useState(false);
 
   // ========= FUNCTIONS =========
   // OnChange function
@@ -19,7 +20,7 @@ export default function Home() {
   };
 
   // OnSubmit function
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
   };
 
@@ -74,7 +75,14 @@ export default function Home() {
               type="submit"
               className="bg-green-500 text-white rounded-lg shadow-md p-3"
             >
-              Detect text
+              {loading ? (
+                <span className="flex items-center space-x-2">
+                  <LoadingSVG />
+                  Detecting text...
+                </span>
+              ) : (
+                <span>Detect text</span>
+              )}
             </button>
           </div>
 
@@ -87,3 +95,29 @@ export default function Home() {
     </div>
   );
 }
+
+// ========= LOADING SVG COMPONENT =========
+const LoadingSVG = () => {
+  return (
+    <svg
+      class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        class="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        stroke-width="4"
+      ></circle>
+      <path
+        class="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+      ></path>
+    </svg>
+  );
+};
