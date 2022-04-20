@@ -22,6 +22,21 @@ export default function Home() {
   // OnSubmit function
   const handleOnSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
+    try {
+      const { extractedText } = await fetch('/api/cloudinaryApi', {
+        method: 'POST',
+        body: imageSrc,
+      }).then((response) => response.json());
+
+      console.log(extractedText);
+      setExtractedText(extractedText);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
   };
 
   // ========= RENDER UI =========
