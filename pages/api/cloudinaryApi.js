@@ -22,7 +22,7 @@ export default (request, response) => {
         .filter((entry) => typeof entry === 'string')
         .join(' ');
 
-      return response.status(200).json({ extractedText });
+      return response.status(200).json({ data: extractedText });
     }
   );
 };

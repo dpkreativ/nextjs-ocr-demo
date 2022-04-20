@@ -25,13 +25,13 @@ export default function Home() {
     setLoading(true);
 
     try {
-      const { extractedText } = await fetch('/api/cloudinaryApi', {
+      const { data } = await fetch('/api/cloudinaryApi', {
         method: 'POST',
         body: imageSrc,
       }).then((response) => response.json());
 
-      console.log(extractedText);
-      setExtractedText(extractedText);
+      console.log(data);
+      setExtractedText(data);
       setLoading(false);
     } catch (error) {
       console.log(error);
