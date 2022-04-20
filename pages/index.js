@@ -59,13 +59,22 @@ export default function Home() {
           className="mt-5 grid gap-5 md:grid-cols-5"
         >
           {/* Image Box: to store and preview the image before text extraction begins */}
-          <div className="w-full h-72 col-span-5 md:col-span-2">
-            {imageSrc && (
+          <div className="w-full h-72 col-span-5 md:col-span-2 flex">
+            {imageSrc ? (
               <img
                 src={imageSrc}
                 alt="uploaded image"
                 className="object-contain h-full w-full"
               />
+            ) : (
+              <span className="self-center flex flex-col space-y-3 p-5">
+                <p className="italic">
+                  Click on the blue button below to add an image
+                </p>
+                <div className="animate-bounce">
+                  <ArrowSVG />
+                </div>
+              </span>
             )}
           </div>
 
@@ -117,13 +126,13 @@ export default function Home() {
 const LoadingSVG = () => {
   return (
     <svg
-      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+      class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
     >
       <circle
-        className="opacity-25"
+        class="opacity-25"
         cx="12"
         cy="12"
         r="10"
@@ -131,10 +140,27 @@ const LoadingSVG = () => {
         strokeWidth="4"
       ></circle>
       <path
-        className="opacity-75"
+        class="opacity-75"
         fill="currentColor"
         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
       ></path>
+    </svg>
+  );
+};
+
+// ========= BOUNCING ARROW SVG COMPONENT =========
+const ArrowSVG = () => {
+  return (
+    <svg
+      className="w-6 h-6 text-blue-500"
+      fill="none"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
     </svg>
   );
 };
